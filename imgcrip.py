@@ -21,7 +21,7 @@ def get4PlatesFromAImage(filename, x, y, width, height):
     img = cv2.imread(filename)
     for i in range(4):
         plate = img[y[i]:y[i]+height[i],x[i]:x[i]+width[i]]
-        plate= cv2.rotate(plate, cv2.ROTATE_90_COUNTERCLOCKWISE)
+        plate= cv2.rotate(plate, cv2.ROTATE_90_COUNTERCLOCKWISE) #反時計回りに９０度回転
         plateName = "t{}.jpg".format(i+1)
         cv2.imwrite(plateName, plate)
 
