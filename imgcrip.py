@@ -19,9 +19,10 @@ def get4PlatesFromAImage(filename, x, y, width, height):
     height : ndarray height[4]
         プレートのheight座標
     """
-    img = cv2.imread(filename)
-    # カラーとグレースケールで場合分け
-    if len(img.shape) == 3:
+    img = cv2.imread(filename) #イメージの読み込み
+    
+    # スキャン画像の縦横取得
+    if len(img.shape) == 3: #カラーとグレースケールで場合分け
         img_height, img_width, channels = img.shape[:3]
     else:
         img_height, img_width = img.shape[:2]
@@ -34,10 +35,10 @@ def get4PlatesFromAImage(filename, x, y, width, height):
     height = np.array(height * img_height, dtype=np.int32)
 
     for i in range(4):
-        plate = img[y[i]:y[i]+height[i],x[i]:x[i]+width[i]]
+        plate = img[y[i]:y[i]+height[i],x[i]:x[i]+width[i]] #切り出し
         plate= cv2.rotate(plate, cv2.ROTATE_90_COUNTERCLOCKWISE) #反時計回りに９０度回転
-        plateName = "t{}.jpg".format(i+1)
-        cv2.imwrite(plateName, plate)
+        plateName = "t{}.jpg".format(i+1) #名前の生成
+        cv2.imwrite(plateName, plate) #イメージの保存
 
 if __name__ == '__main__':
     # 座標を割合で指定
