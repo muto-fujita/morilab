@@ -89,9 +89,9 @@ def scan(option, save_as):
         保存名
     """
     cmd = ["scanimage"]
-    cmd.insert(0, option)
+    cmd.extend(option)
 
-    with open("{}.tiff".format(i+1), "w") as f:
+    with open(save_as, "w") as f:
         subprocess.check_call(cmd, stdout=f)
 
 
@@ -101,5 +101,4 @@ if __name__ == '__main__':
     --source TPU8x10\
     --format=tiff".split()
     save_as = "a.tiff"
-    print(option)
     scan(option, save_as)
