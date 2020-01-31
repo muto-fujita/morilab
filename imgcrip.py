@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-def get4PlatesFromAImage(filename, x, y, width, height):
+def get4PlatesFromAImage(filename, save_as, x, y, width, height):
     """
     スキャン画像から4つのプレートを切り出す
     img = img[y:y+height,x:x+width]
@@ -10,6 +10,8 @@ def get4PlatesFromAImage(filename, x, y, width, height):
     ----------
     filename : char
         画像の名前
+    save_as : cahr save_as[4]
+        分割後の画像の名前
     x : ndarray x[4]
         プレートのX座標
     y : ndarray y[4]
@@ -37,7 +39,7 @@ def get4PlatesFromAImage(filename, x, y, width, height):
     for i in range(4):
         plate = img[y[i]:y[i]+height[i],x[i]:x[i]+width[i]] #切り出し
         plate= cv2.rotate(plate, cv2.ROTATE_90_COUNTERCLOCKWISE) #反時計回りに９０度回転
-        plateName = "t{}.jpg".format(i+1) #名前の生成
+        plateName = save_as[i]
         cv2.imwrite(plateName, plate) #イメージの保存
 
 if __name__ == '__main__':
@@ -47,4 +49,6 @@ if __name__ == '__main__':
     width = np.array([1302, 1302, 3129, 3122])/3200
     height = np.array([1945, 3961, 1940, 3961])/4000
 
-    get4PlatesFromAImage("./scanimg.jpg", x, y, width, height)
+    save_as = ["a.jpg", "b.jpg", "c.jpg", "d.jpg"]
+
+    get4PlatesFromAImage("./scanimg.jpg", save_as, x, y, width, height)
