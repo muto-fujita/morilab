@@ -15,3 +15,17 @@ save_as = ["a.jpg", "b.jpg", "c.jpg", "d.jpg"]
 
 get4PlatesFromAImage("./scanimg.jpg", save_as, x, y, width, height)
 ```
+
+### scan.py
+
+#### scan(option, save_as)
+オプション（画質、色、透過・反射）と保存名を指定してスキャンを行う  
+
+```python
+option = "--resolution 360\
+--mode Color\
+--source TPU8x10\
+--format=tiff".split() #.split()で文字列を配列に変換する
+save_as = "a.tiff"
+scan(option, save_as)
+```
