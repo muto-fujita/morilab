@@ -12,7 +12,7 @@ import configparser
 import MySQLdb
 
 
-class DatabaseWith():
+class Database():
     """
     Databaseクラス (fetchのたびにカーソルを取得)
 
@@ -99,7 +99,7 @@ class DatabaseWith():
             cur.execute(sql)
 
 
-class Database():
+class DatabaseLegacy():
     """
     Databaseクラス
 
@@ -340,9 +340,9 @@ if __name__ == "__main__":
     # prepare to path
     abs_path = os.path.dirname(os.path.realpath(__file__))
     path_to_cfg = os.path.join(abs_path,
-                               './../../colonylive_copied_by_wata.cfg')
+                               './../../colonylive.cfg')
     # prepare to access into DB
-    db = Database(path_to_cfg)
+    db = DatabaseLegacy(path_to_cfg)
 
     # set SQL string
     sql = "SELECT * FROM exp"
@@ -352,6 +352,6 @@ if __name__ == "__main__":
     res = db.cur.fetchone()
     print(res)
 
-    dbw = DatabaseWith(path_to_cfg)
+    dbw = Database(path_to_cfg)
     res = dbw.fetchone(select='*', table='exp')
     print(res)
