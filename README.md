@@ -16,7 +16,7 @@ save_as = ["a.jpg", "b.jpg", "c.jpg", "d.jpg"]
 get4PlatesFromAImage("./scanimg.jpg", save_as, x, y, width, height)
 ```
 
-### scan.py
+### scanner.py
 
 #### scan(option, save_as)
 オプション（画質、色、透過・反射）と保存名を指定してスキャンを行う  
